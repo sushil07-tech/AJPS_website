@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block content %}
+
+{% if products %}
+<h5 class="text" style="margin-top: 1.5pc;margin-left: 1pc;"> The search results are... </h5>
+<div class="container">
+    <!-- <div class="row justify-content-center m-4">
+        {%for p in products%}
+        <div class="col">
+            <div class="card" style="width: 16rem; margin-bottom: 5px;">
+                <div></div>
+                <img src="{{p.image.url}}" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h6>{{p.product_name}}</h6>
+                    <h3><i class="fa-solid fa-indian-rupee-sign"></i>{{p.discount_price}}
+                        <small class="fw-light text-decoration-line-through" style="margin-left:2mm">
+                            <i class="fa-solid fa-indian-rupee-sign"></i>
+                            {{p.selling_price}}</small>
+
+                    </h3>
+                    <div class="card-footstep-1 no-gutters" style="margin-top: 1pc">
+
+                        <form action="add-to-cart/">
+
+                            <input hidden type="text" value={{p.id}} name="product_id" id="product_id">
+
+                            <button type="submit" class="btn btn-outline-success px-3" style="width: 10.5rem;">
+                                Add to Cart
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="row justify-content-center m" style="margin-right: 2pc;">
+        {% for p in products %}
+        <div class="col" style="width: 6pc; margin-right: 8pc;">
+            <div class="card-items-center" id="{{p.id}}" style="width:14rem  ;margin-bottom: 1.5pc;">
+                <img src="{{p.image.url}}" class="card-img-top" style="max-width: min-content;" alt="">
+                <div class="card-body" style="width:14rem">
+                    <h6>{{p.product_name}}</h6>
+                    <h3><i class="fa fa-rupee-sign"></i>{{p.discount_price}}
+                        <small class="fw-light text-decoration-line-through" style="margin-left:2mm">
+                            <i class="fa fa-rupee-sign"></i>
+                            {{p.selling_price}}</small>
+
+                    </h3>
+
+                    <div class="card-footstep-1 no-gutters" style="margin-top: 1pc">
+                        {% if request.user.is_authenticated %}
+                        <form action="add-to-cart/">
+                            {% else %}
+                            <form action="accounts/login/">
+                                {% endif %}
+                                <input hidden type="text" value={{p.id}} name="product_id" id="product_id">
+                                <button type="submit" class="btn btn-outline-success px-3" style="width: 10.5rem;">
+                                    Add to Cart
+                                </button>
+
+                            </form>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {%endfor%}
+        {%endfor%}
+    </div>
+    {% else %}
+    <h5 style="margin-left: 37pc;margin-top: 10pc;">Oops! there is no such products.</h5>
+
+    {% endif %}
+
+
+
+    {% endblock %}

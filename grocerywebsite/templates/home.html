@@ -1,0 +1,192 @@
+{% extends 'common.html' %}
+
+{% block content %}
+{% load static%}
+
+<nav class="navbar navbar-expand-lg navbar-brand">
+    <div class="container-fluid ">
+        <a class="navbar-brand" href="#">AJPSMart</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+
+                <li>
+                    <form class="d-flex">
+                        <span class="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        </span>
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </li>
+                <span class="logo">
+                    <li>
+                        <a href="accounts/register2 "><i class="fas fa-shopping-cart"></i></a>
+                    </li>
+                </span>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container ">
+    <div class="row ">
+        <div class="col-3 ">
+            <a href=""><img src="{%static 'images/icon-all.png'%}" class="img1"></a>
+
+        </div>
+        <div class="col-3">
+            <a href="edibleproduct/product.html"><img src="{%static 'images/50474c.jpg'%}" class="img"></a>
+
+        </div>
+        <div class="col-3">
+            <a href="snacks and namkeen/product.html"><img src="{%static 'images/9fbd36.jpg'%}" class="img" alt=""></a>
+        </div>
+        <div class="col-3 ">
+            <a href="detergentsoap/detergent.html"><img src="{%static 'images/b7ade9.jpg'%}" class="img" alt=""></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            ALL </div>
+        <div class="col">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Food Essentials
+                </button>
+                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item active" href="#">Edible Oils & Ghees</a></li>
+                    <li><a class="dropdown-item" href="#">Sugar & Tea</a></li>
+                    <li><a class="dropdown-item" href="#">Rice</a></li>
+                    <li><a class="dropdown-item" href="#">Dals and Pulses</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Snack and Cold Drinks
+                </button>
+                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item" href="#">Soft Drinks</a></li>
+                    <li><a class="dropdown-item" href="#">Energy Drinks</a></li>
+                    <li><a class="dropdown-item" href="#">Chips & Namkeen</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Household Care
+                </button>
+                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item active" href="#">Utensils Cleaners</a></li>
+                    <li><a class="dropdown-item" href="#">Floor Cleaners</a></li>
+                    <li><a class="dropdown-item" href="#">Freshners</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'images/5f61973bce94ahome-slider-2.jpg' %}" class="d-block">
+            <div class="carousel-caption d-none d-md-block">
+
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'images/All.jpg' %}" class="d-block">
+            <div class="carousel-caption d-none d-md-block">
+
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'images/img_slider01.png' %}" class="d-block">
+            <div class="carousel-caption d-none d-md-block">
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<div class="container">
+    <div class="row">
+        {%for p in prod%}
+        <div class="col">
+            <div class="card" style="width: 16rem; margin-bottom: 5px;">
+                <div></div>
+                <img src="{{p.image.url}}" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h6>{{p.product_name}}</h6>
+                    <h4><i class="fas fa-rupee-sign"></i>{{p.price}}</h4>
+                    <button type="button" class="btn btn-outline-success">Buy Now </button>
+                    <button type="button" class="btn btn-outline-success">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+</div>
+
+<footer class=" text-center text-white">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+            <!-- Facebook -->
+            <h4>Contact Us:</h4>
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                    class="fab fa-facebook-f"></i></a>
+
+            <!-- Twitter -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+
+            <!-- Google -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                    class="fab fa-instagram"></i></a>
+
+            <!-- Linkedin -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                    class="fab fa-linkedin-in"></i></a>
+
+            <!-- Github -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
+        </section>
+        <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+
+
+</footer>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col" style="margin-bottom: 10pc;">
+            <ul class="list-group" style="max-width:max-content;">
+                <h3>Welcome {{request.user.username|capfirst}}</h3>
+                <li class="list-group-item"><a href="{% url 'profile' %}" class="btn {{active}}">Profile</a></li>
+                <li class="list-group-item"><a href="{% url 'address' %}">Address</a></li>
+                <li class="list-group-item"><a href="{% url 'changepassword' %}">Change Password</a></li>
+            </ul>
+        </div>
+        <div class="col-9" style="margin-top: 3pc;">
+            <form action="" method="POST" style="max-width: 700px; margin:auto;
+              margin-left: 4pc;">
+                {% if messages %}
+                <div class="text-center" style="background-color: lightgreen;padding:1pc;margin-bottom: 1pc;">
+                    {% for m in messages %}
+                    <h5 {% if message.tags %} class="alert mb-3" {% endif %}>{{ m }}</h5>
+                    {% endfor %}
+                </div>
+                {%endif%}
+                {% csrf_token %}
+                <h3 class="alert border rounded ">Update your profile.</h3>
+                {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                <p class="alert alert-danger my-3">{{error}}</p>
+                {%endfor%}
+                {%endif%}
+                {%for fm in form%}
+                <div class="form-group mb-1">
+                    {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+                </div>
+                {% endfor %}
+                <div class="text-center" style="margin-top: 1pc;">
+                    <button class="btn btn-success" type='submit'
+                        style="margin-bottom: 1pc;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                        Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<div class="container-fluid">
+
+
+</div>
+
+
+
+{% endblock %}
