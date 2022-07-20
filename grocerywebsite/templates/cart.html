@@ -1,0 +1,239 @@
+{%extends 'navbar.html'%}
+
+{% load static %}
+
+{% block content %}
+{% if products %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 col-11 mx-auto">
+            <div class="row mt-5 gx-5">
+                <!-- left side div -->
+                <div class="col-md-12 col-lg-8 col-11 mx-auto main_cart mb-lg-0 mb-5">
+                    <div class="card p-3">
+                        <h2 class="">Cart</h2>
+                        {% for p in products %}
+                        <div class="row" id="cart_{{p.product.id}}">
+                            <div class="col-md-3 col-11 mx-auto shadow product_img py-2" style="display: flex;
+                            justify-content: center; align-items: center;">
+                                <img src="{{p.product.image.url}}" class="img-fluid" style="width: 9pc;height: 12pc;"
+                                    alt="">
+                            </div>
+                            <div class="col-md-8 col-11 mx-auto px-3 mt-2">
+                                <div class="row">
+                                    <div class="col-6 card-title">
+                                        <h5 class="mb-3">{{p.product.product_name}}</h5>
+                                        <p>{{p.product.quantity_type}}</p>
+                                    </div>
+                                    <div class="col-6 ">
+                                        <ul class="pagination" style="justify-content: end;">
+                                            <li class="page-item">
+                                                <button class="minus-btn btn-outline-success rounded-pill"
+                                                    id="{{p.product.id}}">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+
+                                            </li>
+                                            <li class="page-item" style="width: 1.5cm; text-align: center;
+                                                align-self: center;">
+                                                <span name="" class="tt" id="qty_{{p.product.id}}">
+                                                    {{p.quantity}}</span>
+                                            </li>
+
+                                            <li class="page-item">
+                                                <button class="plus-btn btn-outline-success rounded-pill"
+                                                    pid="{{p.product.id}}">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </li>
+
+                                        </ul>
+                                        <!-- <a class="minus btn" id="{{p.product.id}}">
+                                            <i class="fas fa-minus-square fa-lg"></i>
+                                        </a>
+                                        <span id="quantity">{{p.quantity}}</span>
+                                        <a class="plus-btn" pid="{{p.product.id}}">
+                                            <i class="fas fa-plus-square fa-lg"></i>
+                                        </a> -->
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6 ">
+                                        <h3><i class="fa-solid fa-indian-rupee-sign"></i>
+                                            {{p.product.discount_price}}
+
+                                            <small class="fw-light text-decoration-line-through"
+                                                style=" font-size: medium; margin-left: 2mm;">
+                                                <i class="fa-solid fa-indian-rupee-sign"></i>
+                                                {{p.product.selling_price}}
+
+                                            </small>
+                                        </h3>
+
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="t-btn btn-outline-success py-1 px-2 rounded-pill"
+                                            id="{{p.product.id}}" style="position: static;margin-left: 13pc;">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <hr>
+                        {% endfor %}
+                    </div>
+
+                </div>
+
+                <div class="col-md-12 col-lg-4 col-11 mx-auto mt-lg-0 mt-md-5">
+                    <div class="row">
+                        <div class="heading  p-3 shadow">
+                            <h2 class="product_name mb-1">Price Details:</h2>
+                            <hr>
+                            <div class="d-flex justify-content-between " style="margin-left: 0%;">
+                                <p>MRP</p>
+                                <span id="mrp"><i class="fa-solid fa-indian-rupee-sign" id="rupee"
+                                        style="margin-right:0.5mm;"></i>{{mrp}}</span>
+                            </div>
+                            <div class="d-flex justify-content-between " style="margin-left: 0%;">
+                                <p>Shipping Charges</p>
+                                <span>0</span>
+                            </div>
+                            <hr style="margin-top: 1mm;">
+                            <div class="d-flex justify-content-between " style="margin-left: 0%;">
+                                <strong>Total Amount</strong>
+                                <strong id="tamount">
+                                    <i class="fa-solid fa-indian-rupee-sign" style="margin-right:0%;"></i>
+                                    {{tprice}}
+                                </strong>
+                            </div>
+                            <hr>
+                            <div>
+                                <strong>
+                                    <a href="{% url 'checkout' %}"><button class="btn px-3 py-2 " style="background-color: greenyellow;
+                                         margin-left: 12pc;">
+                                            Proceed to Checkout
+                                        </button>
+                                    </a>
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+{% else %}
+
+<div class="container-fluid " style="margin-top: 10pc;">
+    <h3 class="text-center mt-4">
+        No products in your Cart !!
+    </h3>
+    <div class="text-center mt-4">
+        <button class="btn" style="background-color: yellowgreen;">
+            <h2> <a href="{% url 'home' %} " style="color:white">Add Products</a> </h2>
+        </button>
+
+    </div>
+
+
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block js %}
+<script>
+    $(document).ready(function () {
+        console.log('working');
+        $('.plus-btn').click(function () {
+            console.log('clicked');
+            var id = $(this).attr("pid").toString();
+            var eml = this.parentNode.children[2]
+            // var sp=document.getElementById('tt');
+            $.ajax({
+                type: "GET",
+                url: "/pluscart/",
+                data: {
+                    p_id: id
+                },
+                success: function (data) {
+                    console.log('plus')
+                    console.log(data);
+                    document.getElementById('qty_' + id).textContent = data.quantity
+                    document.getElementById('mrp').textContent = data.amount
+                    document.getElementById('tamount').innerText = data.totalamount
+                    // alertify.success(data.status)
+
+
+                }
+            })
+        })
+
+        $('.minus-btn').click(function () {
+            console.log('clickedminus');
+            var idm = $(this).attr("id").toString();
+            var eml = this.parentNode.children[2]
+            $.ajax({
+                type: "GET",
+                url: "/minuscart/",
+                data: {
+                    pid: idm,
+                },
+                success: function (data) {
+                    console.log(data);
+                    document.getElementById('qty_' + idm).textContent = data.quantity
+                    document.getElementById('mrp').innerText = data.amount
+                    document.getElementById('tamount').textContent = data.totalamount
+
+
+                }
+            })
+        })
+
+        $('.t-btn').click(function () {
+            console.log('clicked');
+            var id = $(this).attr("id").toString();
+            var rw = document.getElementById('cart_' + id)
+            $.ajax({
+                type: "GET",
+                url: "/removeproduct/",
+                data: {
+                    pid: id,
+                },
+                success: function (data) {
+                    console.log(data);
+                    document.getElementById('mrp').innerText = data.amount
+                    document.getElementById('tamount').innerText = data.totalamount
+                    rw.remove()
+
+                }
+
+
+            })
+        })
+
+
+
+    })
+
+
+</script>
+
+
+{% endblock %}

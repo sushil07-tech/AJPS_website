@@ -1,0 +1,38 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row " style="margin-top: 6pc;margin-left: 0.8pc;">
+        <h3>Welcome {{request.user.username|capfirst}}   
+            <span style="margin-left: 11pc;">Customers :</span></h3>
+        <div class="col-2" >
+            <ul class="list-group">     
+                <li class="list-group-item"><a href="{% url 'profile' %}" >Profile</a></li>
+                <li class="list-group-item"><a href="{% url 'address' %}" class="btn {{active}}">Address</a></li>
+                <li class="list-group-item"><a href="{% url 'changepassword' %}">Change Password</a></li>
+            </ul>
+        </div>
+        <div class="col-5" >
+            <div class="col-5" style="margin:auto">
+                {% for ad in add %} 
+                <div class="card"style="width:30pc; ">
+                    <div class="card-body">
+                        <h3>{{ad.name}}</h3>
+                        <h6>{{ad.phone}}</h6>
+                        <h6>{{ad.street}},</h6>
+                        <h6>{{ad.city}}-{{ad.pin_code}}</h6>
+                        
+                    </div>
+                </div>
+                <br>
+                {% endfor %}
+            </div>
+    
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

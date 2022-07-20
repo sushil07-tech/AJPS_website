@@ -1,0 +1,103 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{%static 'c.css'%}?20181209">
+    <link rel="icon" href="https://app.logo.com/view/logo_67a4e603-5d60-43bd-b6d9-0198fb3db1af">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <title>AJPSMart</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="{% static '/js/myscript.js' %}"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script>
+        alertify.set('notifier', 'position', 'top-right');
+
+        {% for msg in messages %}
+        alertify.success('{{ msg }}');
+        {% endfor %}
+
+    </script>
+    
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid ">
+            <a class="navbar-brand" href="/">AJPSMart</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li>
+                        <form class="d-flex" action="search" method="get">
+                            <span class="search">
+                                <input class="form-control me-2" type="text" name="query" placeholder="Search"
+                                    aria-label="Search">
+                            </span>
+                            <button class="btn btn-outline-success" style="margin-left: 0.8pc;"
+                                type="submit">Search</button>
+                        </form>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                    <div class="collapse navbar-collapse mt-0" id="navbarNavDarkDropdown" style="margin-left:18pc">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink"
+                                    role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: green;">
+                                    {{request.user.username|capfirst}}
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark"
+                                    aria-labelledby="navbarDarkDropdownMenuLink">
+                                    <li><a class="dropdown-item" style="color: black;"
+                                            href="{% url 'profile' %}">Profile</a></li>
+                                    <li><a class="dropdown-item" style="color: black;" href="{% url 'my_orders' %}">My
+                                            Orders</a></li>
+                                    <li><a class="dropdown-item" style="color: black;" href="{% url 'logout' %}">Log
+                                            Out</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="{% url 'cart' %}" style="margin-left: 2pc;margin-top: 6px;"><i
+                            class="fas fa-shopping-cart"></i></a>
+                    {% else %}
+                    <span class="logo">
+                        <a href="accounts/register "><i class="fas fa-user mt-2"></i></a>
+                    </span>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+
+    {% block content %}
+
+    {% endblock %}
+
+    {% block js %}
+
+    {% endblock %}
+</body>
+
+</html>

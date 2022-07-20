@@ -1,0 +1,248 @@
+{% extends 'common.html' %}
+
+{% block content %}
+{% load static %}
+
+
+
+    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+
+            <li>
+                <form class="d-flex" action="search" method="get">
+                    <span class="search">
+                        <input class="form-control me-2" type="text" name="query" placeholder="Search"
+                            aria-label="Search">
+                    </span>
+                    <button class="btn btn-outline-success"  type="submit">Search</button>
+                </form>
+            </li>
+            <!-- {% if request.user.is_authenticated %}
+            style="margin-left:18pc
+            <div class="collapse navbar-collapse mt-0" id="navbarNavDarkDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false" style="color: green;">
+                            {{request.user.username|capfirst}}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                            <li><a class="dropdown-item" style="color: black;" href="{% url 'profile' %}">Profile</a>
+                            </li>
+                            <li><a class="dropdown-item" style="color: black;" href="{% url 'my_orders' %}">My
+                                    Orders</a></li>
+                            <li><a class="dropdown-item" style="color: black;" href="{% url 'logout' %}">Log Out</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <a href="{% url 'cart' %}" style="margin-left: 2pc;margin-top: 6px;"><i
+                    class="fas fa-shopping-cart"></i></a>
+            {% else %}
+            <span class="logo">
+                <a href="accounts/register "><i class="fas fa-user mt-2"></i></a>
+            </span>
+            {% endif %}
+        </ul> -->
+
+    </div>
+
+
+
+
+<div class="container ">
+    <div class="row ">
+        {% for c in categories %}
+        <div class="col-3 mt-2">
+            <a href="{{c.get_absolute_url}}" type="text"><img src="{{c.image.url}}" class="img"
+                    style="margin-left: 3pc; height:5pc;"></a>
+
+        </div>
+        {% endfor %}
+        </ul>
+
+    </div>
+    <div class="row">
+        <div class="col mb-2">
+            <div class="dropdown">
+                <button class="btn btn-secondary py-1 px-4 mt-2" type="button" id="dropdownMenuButton2"
+                    style="margin-left: 1.9pc;" data-bs-toggle="dropdown" aria-expanded="false">
+                    ALL
+                </button>
+            </div>
+        </div>
+        <div class="col">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Food Essentials
+                </button>
+                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item active" href="#">Edible Oils & Ghees</a></li>
+                    <li><a class="dropdown-item" href="#">Sugar & Tea</a></li>
+                    <li><a class="dropdown-item" href="#">Rice</a></li>
+                    <li><a class="dropdown-item" href="#">Dals and Pulses</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Snack and Cold Drinks
+                </button>
+                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item" href="#">Soft Drinks</a></li>
+                    <li><a class="dropdown-item" href="#">Energy Drinks</a></li>
+                    <li><a class="dropdown-item" href="#">Chips & Namkeen</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col" style="margin-left: 3pc;">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Household Care
+                </button>
+                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item active" href="#">Utensils Cleaners</a></li>
+                    <li><a class="dropdown-item" href="#">Floor Cleaners</a></li>
+                    <li><a class="dropdown-item" href="#">Freshners</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'images/5f61973bce94ahome-slider-2.jpg' %}" class="d-block">
+            <div class="carousel-caption d-none d-md-block">
+
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'images/All.jpg' %}" class="d-block">
+            <div class="carousel-caption d-none d-md-block">
+
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'images/img_slider01.png' %}" class="d-block">
+            <div class="carousel-caption d-none d-md-block">
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+
+
+
+<div class="row justify-content-center m" style="margin-right: 2pc;">
+    {% for p in products %}
+    <div class="col" style="width: 6pc; margin-right: 8pc;">
+        <div class="card-items-center" id="{{p.id}}" style="width:14rem  ;margin-bottom: 1.5pc;">
+            <img src="{{p.image.url}}" class="card-img-top" style="max-width: min-content;" alt="">
+            <div class="card-body" style="width:14rem">
+                <h6>{{p.product_name}}</h6>
+                <h3><i class="fas fa-rupee-sign"></i>{{p.discount_price}}
+                    <small class="fw-light text-decoration-line-through" style="margin-left:2mm">
+                        <i class="fas fa-rupee-sign"></i>
+                        {{p.selling_price}}</small>
+
+                </h3>
+
+                <div class="card-footstep-1 no-gutters" style="margin-top: 1pc">
+                    {% if request.user.is_authenticated %}
+                    <form action="add-to-cart/">
+                        {% else %}
+                        <form action="accounts/login/">
+                            {% endif %}
+                            <input hidden type="text" value={{p.id}} name="product_id" id="product_id">
+                            <button type="submit" class="btn btn-outline-success px-3" style="width: 10.5rem;">
+                                Add to Cart
+                            </button>
+
+                        </form>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {%endfor%}
+
+
+</div>
+
+
+
+<footer class=" text-center text-dark">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4 text-center">
+            <!-- Facebook -->
+            <h4 style="text-align: center; margin-right: 3pc;">Contact Us:</h4>
+            <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i
+                    class="fab fa-facebook-f"></i></a>
+
+            <!-- Twitter -->
+            <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+
+            <!-- Google -->
+            <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+
+            <!-- Instagram -->
+            <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i
+                    class="fab fa-instagram"></i></a>
+
+            <!-- Linkedin -->
+            <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i
+                    class="fab fa-linkedin-in"></i></a>
+
+            <!-- Github -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
+        </section>
+        <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+
+
+</footer>
+
+
+
+
+
+{% endblock %}
+
+{% block js %}
+
+<script>
+
+</script>
+
+{% endblock %}
