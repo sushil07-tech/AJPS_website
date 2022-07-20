@@ -1,0 +1,71 @@
+.text-center{
+    margin-top: 10px;
+}
+.btn
+{ margin-left: 5px;
+
+
+}
+.navbar{
+    background-color:yellowgreen;
+    
+}
+
+.search{
+    width: 50pc;
+    margin-left: 2px;
+}
+
+.d-flex{
+    margin-left: 10pt;
+}
+.logo{
+  margin-left: 27pc;
+  
+}
+.container{
+ font-style: italic;
+font-weight: 500;}
+.img{
+    width: 80px;
+}
+.img1{
+    width: 80px;
+}
+
+.col-3{
+    display:inline-flexbox;
+    justify-content: center;
+}
+
+.col {
+    margin-left: 20px;
+    max-height: 450px;
+    align-self: center;
+}
+.d-block{
+    width: 50%;
+    margin-left: 25pc;
+    margin-top: 2pc;
+    margin-bottom: 2pc;
+}
+.carousel-item{
+    background-color: yellowgreen;
+
+}
+.container1{
+    background-color: yellowgreen;
+}
+/* #innerlogo{
+    margin-left: 22pc;
+} */
+
+.message{
+    align-self: center;
+    margin-left: 10pc;
+    
+}
+
+.list-group-item{
+    color: black;
+}
